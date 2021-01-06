@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+
+jest.mock('./EloToDo', () => {
+  const mock = () => <div>mocked EloToDo</div>;
+  return mock;
+});
+
+test('initial view shows input form', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const eloToDoApp = screen.getByText(/mocked EloToDo/);
+  expect(eloToDoApp).toBeInTheDocument();
 });
